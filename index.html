@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI PROMPTS OS | v5.0 ULTIMATE</title>
+    <title>AI PROMPTS OS | v7.0 PERSISTENCE</title>
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@400;600;800&display=swap"
         rel="stylesheet">
@@ -29,7 +29,6 @@
             border: 1px solid #222;
         }
 
-        /* Syntax Highlight Simulation */
         .token-keyword {
             color: #f472b6;
             font-weight: bold;
@@ -66,7 +65,7 @@
         <div class="p-6 border-b border-border">
             <h1 class="font-mono text-lg font-bold text-blue-500 tracking-tighter">PROMPT<span
                     class="text-white">ENGINEER</span></h1>
-            <p class="text-[10px] text-gray-500 mt-1">v5.0.2 BUILD 2026</p>
+            <p class="text-[10px] text-gray-500 mt-1">v7.0 REAL PERSISTENCE</p>
         </div>
         <nav class="flex-1 p-4 space-y-1">
             <p class="px-3 text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-2">Modules</p>
@@ -77,6 +76,14 @@
                 class="block p-3 rounded text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer transition-all">📚
                 Pattern Library</a>
 
+            <p class="px-3 text-[10px] font-bold text-gray-600 uppercase tracking-widest mt-6 mb-2">Save / Load</p>
+            <button onclick="saveProject()"
+                class="w-full text-left rounded p-3 text-gray-400 hover:bg-white/5 hover:text-white transition-all text-sm">💾
+                Export .JSON</button>
+            <button onclick="clearData()"
+                class="w-full text-left rounded p-3 text-red-500 hover:bg-red-900/10 transition-all text-sm">🗑️ Reset
+                Console</button>
+
             <p class="px-3 text-[10px] font-bold text-gray-600 uppercase tracking-widest mt-6 mb-2">Database</p>
             <a href="https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-" target="_blank"
                 class="block p-3 rounded text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer transition-all">📂
@@ -86,25 +93,24 @@
 
     <!-- MAIN AREA -->
     <main class="flex-1 flex flex-col bg-dark relative">
-        <!-- HEADER -->
         <header class="h-14 border-b border-border flex items-center justify-between px-6 bg-darker/50 backdrop-blur">
             <div class="flex items-center gap-3">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="font-mono text-xs text-green-500">API CONNECTED (Simulated)</span>
+                <span class="font-mono text-xs text-green-500">SESSION ACTIVE</span>
+                <span id="save-status" class="text-[10px] text-gray-600 ml-2 opacity-0 transition-opacity">Saved
+                    locally.</span>
             </div>
             <div class="flex gap-2">
                 <button onclick="copyToClipboard()"
                     class="px-3 py-1.5 bg-blue-600/20 text-blue-400 border border-blue-600/30 rounded text-xs font-bold hover:bg-blue-600/30 transition-all">COPY
-                    CODE</button>
+                    PROMPT</button>
             </div>
         </header>
 
         <!-- LAB VIEW -->
         <div id="view-lab" class="flex-1 flex overflow-hidden">
-            <!-- INPUT PANEL -->
             <div class="w-[400px] bg-[#0c0c0c] border-r border-border flex flex-col overflow-y-auto">
                 <div class="p-6 space-y-6">
-                    <!-- Framework Selector -->
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">1. REASONING
                             FRAMEWORK</label>
@@ -118,16 +124,13 @@
                         </select>
                     </div>
 
-                    <!-- Role Configuration -->
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">2. PERSONA /
                             ROLE</label>
                         <input type="text" id="role" onkeyup="updatePrompt()" value="Senior Python Developer"
-                            class="w-full bg-[#151515] border border-border text-white p-2.5 rounded focus:border-blue-500 outline-none font-mono placeholder-gray-700"
-                            placeholder="e.g. Expert Copywriter">
+                            class="w-full bg-[#151515] border border-border text-white p-2.5 rounded focus:border-blue-500 outline-none font-mono placeholder-gray-700">
                     </div>
 
-                    <!-- Task Definition -->
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">3. CORE TASK</label>
                         <textarea id="task" onkeyup="updatePrompt()"
@@ -135,7 +138,6 @@
                             placeholder="Describe exactly what you need..."></textarea>
                     </div>
 
-                    <!-- Parameters -->
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">TONE</label>
@@ -161,32 +163,24 @@
                         </div>
                     </div>
 
-                    <!-- Advanced Constraints -->
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">4. CONSTRAINTS
                             (Variables)</label>
                         <textarea id="constraints" onkeyup="updatePrompt()"
                             class="w-full bg-[#151515] border border-border text-gray-400 p-2 rounded h-16 outline-none text-xs font-mono"
-                            placeholder="- No jargon&#10;- Max 200 words&#10;- Use bullet points"></textarea>
+                            placeholder="- No jargon&#10;- Max 200 words"></textarea>
                     </div>
                 </div>
             </div>
 
-            <!-- PREVIEW PANEL (CODE EDITOR STYLE) -->
             <div class="flex-1 bg-[#050505] p-6 flex flex-col">
                 <div class="editor-bg rounded-lg shadow-2xl flex flex-col h-full overflow-hidden">
-                    <!-- Editor Tabs -->
-                    <div class="bg-[#1a1a1a] border-b border-border flex px-2">
+                    <div class="bg-[#1a1a1a] border-b border-border flex px-2 relative">
                         <div
                             class="px-4 py-2 bg-[#050505] border-t-2 border-blue-500 text-gray-300 text-xs font-mono flex items-center border-r border-[#222]">
-                            compiled_prompt.txt
-                        </div>
-                        <div class="px-4 py-2 text-gray-600 text-xs font-mono flex items-center">
-                            system_log
-                        </div>
+                            compiled_prompt.md</div>
                     </div>
 
-                    <!-- Editor Content -->
                     <div class="p-6 font-mono text-sm leading-relaxed overflow-y-auto flex-1 text-gray-300"
                         id="editor-content">
                         <!-- Dynamic Content Injected Here -->
@@ -207,12 +201,24 @@
                     <div class="text-pink-500 text-xs font-bold mb-1">MARKETING</div>
                     <div class="font-bold">Sales Letter VSL</div>
                 </div>
+                <div onclick="loadTemplate('email')" class="glass p-4 rounded hover:border-blue-500 cursor-pointer">
+                    <div class="text-green-500 text-xs font-bold mb-1">EMAIL</div>
+                    <div class="font-bold">Cold Outreach</div>
+                </div>
             </div>
         </div>
-
     </main>
 
     <script>
+        // Init from LocalStorage
+        function init() {
+            if (localStorage.getItem('ai_role')) document.getElementById('role').value = localStorage.getItem('ai_role');
+            if (localStorage.getItem('ai_task')) document.getElementById('task').value = localStorage.getItem('ai_task');
+            if (localStorage.getItem('ai_framework')) document.getElementById('framework').value = localStorage.getItem('ai_framework');
+            if (localStorage.getItem('ai_constraints')) document.getElementById('constraints').value = localStorage.getItem('ai_constraints');
+            updatePrompt();
+        }
+
         function setView(id) {
             document.getElementById('view-lab').classList.add('hidden');
             document.getElementById('view-library').classList.add('hidden');
@@ -227,10 +233,19 @@
             const format = document.getElementById('format').value;
             const constraints = document.getElementById('constraints').value;
 
-            let systemPrompt = "";
-            let userPrompt = "";
+            // Save to LocalStorage
+            localStorage.setItem('ai_role', role);
+            localStorage.setItem('ai_task', task);
+            localStorage.setItem('ai_framework', framework);
+            localStorage.setItem('ai_constraints', constraints);
+
+            // Show auto-save indicator
+            const status = document.getElementById('save-status');
+            status.style.opacity = '1';
+            setTimeout(() => status.style.opacity = '0', 1000);
 
             // LOGIC FOR FRAMEWORKS
+            let systemPrompt = "", userPrompt = "";
             if (framework === 'cot') {
                 systemPrompt = `You are a world-class ${role}. Think step-by-step.`;
                 userPrompt = `TASK: ${task}\n\nINSTRUCTION:\nBreak this down into logical steps. Explain your reasoning for each step before providing the final answer.\n\n`;
@@ -245,7 +260,6 @@
                 userPrompt = `TASK: ${task}\n\n`;
             }
 
-            // APPENDING VARIABLES
             const finalOutput = `
 <span class="token-comment">### SYSTEM ROLE ###</span>
 <span class="token-keyword">ACT AS</span>: <span class="token-string">"${role}"</span>
@@ -253,9 +267,9 @@
 <span class="token-keyword">FORMAT_OUTPUT_AS</span>: <span class="token-var">${format}</span>
 
 <span class="token-comment">### USER INSTRUCTION (${framework.toUpperCase()}) ###</span>
-${userPrompt.replace(/\n/g, '<br>')}
+${userPrompt.replace(/\\n/g, '<br>')}
 <span class="token-comment">### CONSTRAINTS ###</span>
-${constraints ? constraints.replace(/\n/g, '<br>') : '<span class="token-comment">// No constraints set</span>'}
+${constraints ? constraints.replace(/\\n/g, '<br>') : '<span class="token-comment">// No constraints set</span>'}
 
 <span class="token-comment">### FINAL TRIGGER ###</span>
 <span class="token-keyword">Take a deep breath</span> and execute efficiently.
@@ -273,6 +287,10 @@ ${constraints ? constraints.replace(/\n/g, '<br>') : '<span class="token-comment
                 document.getElementById('role').value = "Direct Response Copywriter";
                 document.getElementById('framework').value = "cot";
                 document.getElementById('task').value = "Write a high-converting Video Sales Letter (VSL) script for a fitness coaching program.";
+            } else if (type === 'email') {
+                document.getElementById('role').value = "B2B Sales Expert";
+                document.getElementById('framework').value = "fewshot";
+                document.getElementById('task').value = "Draft a cold email sequence for selling SEO services to Dentists.";
             }
             updatePrompt();
         }
@@ -285,11 +303,33 @@ ${constraints ? constraints.replace(/\n/g, '<br>') : '<span class="token-comment
             window.getSelection().addRange(range);
             document.execCommand('copy');
             window.getSelection().removeAllRanges();
-            alert("Prompt Logic Copied!");
+            alert("Prompt Copied to Clipboard!");
+        }
+
+        function saveProject() {
+            const data = {
+                role: document.getElementById('role').value,
+                task: document.getElementById('task').value,
+                framework: document.getElementById('framework').value,
+                timestamp: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "prompt-project.json";
+            a.click();
+        }
+
+        function clearData() {
+            if (confirm("Reset all fields?")) {
+                localStorage.clear();
+                location.reload();
+            }
         }
 
         // Init
-        updatePrompt();
+        init();
     </script>
 </body>
 
