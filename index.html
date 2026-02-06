@@ -4,578 +4,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI PROMPTS PACK | Digital Empire Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>AI PROMPTS OS | v4.0 Quantum</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { dark: '#050505', card: '#0A0A0A', border: '#1F1F1F', primary: '#3b82f6', accent: '#60a5fa' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Space Grotesk', 'monospace'] } } } }
+    </script>
     <style>
-        :root {
-            --bg: #09090b;
-            --sidebar: #18181b;
-            --card: #27272a;
-            --hover: #3f3f46;
-            --primary: #3b82f6;
-            --blue: #3b82f6;
-            --purple: #8b5cf6;
-            --green: #22c55e;
-            --cyan: #0ea5e9;
-            --text: #fafafa;
-            --subtext: #a1a1aa;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
+            background-color: #050505;
+            color: #e5e5e5;
         }
 
-        .sidebar {
-            width: 260px;
-            background-color: var(--sidebar);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid #333;
-            flex-shrink: 0;
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .logo-sub {
-            font-size: 0.7rem;
-            color: var(--subtext);
-            margin-bottom: 15px;
-        }
-
-        .pack-badge {
-            background: linear-gradient(135deg, var(--blue), var(--purple));
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .menu-item {
-            padding: 12px 15px;
-            border-radius: 8px;
-            color: var(--subtext);
-            cursor: pointer;
-            transition: 0.2s;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
-        }
-
-        .menu-item:hover,
-        .menu-item.active {
-            background-color: var(--card);
-            color: var(--text);
-        }
-
-        .menu-item.active {
-            border-left: 3px solid var(--primary);
-        }
-
-        .menu-divider {
-            border-top: 1px solid #333;
-            margin: 15px 0;
-        }
-
-        .menu-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: var(--subtext);
-            letter-spacing: 1px;
-            padding: 0 15px;
-            margin-bottom: 10px;
-        }
-
-        .main {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-            background: var(--bg);
-        }
-
-        h1 {
-            margin-top: 0;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .welcome-text {
-            color: var(--subtext);
-            margin-bottom: 30px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            background-color: var(--card);
-            padding: 25px;
-            border-radius: 15px;
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary);
+        .glow:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .tag {
-            background: rgba(59, 130, 246, 0.2);
-            color: var(--blue);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
+        ::-webkit-scrollbar-track {
+            background: #050505;
         }
 
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.1rem;
-        }
-
-        .card p {
-            color: var(--subtext);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background: var(--text);
-            color: var(--bg);
-            padding: 10px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn.drive-btn {
-            background: linear-gradient(135deg, #4285f4, #34a853);
-            color: white;
-        }
-
-        .btn.drive-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.3);
-        }
-
-        .section {
-            display: none;
-            animation: fadeIn 0.3s;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .info-box {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid var(--blue);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 25px;
-        }
-
-        .info-box h4 {
-            color: var(--blue);
-            margin-bottom: 5px;
-        }
-
-        .info-box p {
-            color: var(--subtext);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .resource-card {
-            background: var(--card);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.3s;
-        }
-
-        .resource-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .resource-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .resource-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .resource-desc {
-            color: var(--subtext);
-            font-size: 0.85rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .file-count {
-            display: inline-block;
-            background: rgba(34, 197, 94, 0.2);
-            color: var(--green);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        /* Tool Styles */
-        .tool-container {
-            background: var(--card);
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 900px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--subtext);
-        }
-
-        select,
-        input,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--bg);
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: var(--text);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: 0.2s;
-        }
-
-        select:focus,
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .generate-btn {
-            background: linear-gradient(135deg, var(--blue), var(--purple));
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.2s;
-        }
-
-        .generate-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .result-area {
-            margin-top: 20px;
-            position: relative;
-        }
-
-        textarea#promptOutput {
-            min-height: 200px;
-            font-family: 'Consolas', monospace;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--subtext);
-            padding: 6px 12px;
-            font-size: 0.8rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
         }
     </style>
 </head>
 
-<body>
-    <aside class="sidebar">
-        <div class="logo">⚡ AI PROMPTS</div>
-        <div class="logo-sub">PACK 1 DASHBOARD</div>
-
-        <div class="pack-badge">🤖 AI PROMPTS PACK</div>
-
-        <div class="menu-item active" onclick="showSection('home')">🏠 Home</div>
-
-        <div class="menu-divider"></div>
-        <div class="menu-label">Software Tool</div>
-        <div class="menu-item" onclick="showSection('promptBuilder')">🤖 AI Prompt Builder</div>
-
-        <div class="menu-divider"></div>
-        <div class="menu-label">Resources</div>
-        <div class="menu-item" onclick="showSection('resources')">📂 Download Files</div>
+<body class="flex h-screen overflow-hidden">
+    <aside class="w-64 bg-black border-r border-[#1F1F1F] flex flex-col justify-between hidden md:flex">
+        <div class="p-6">
+            <h1 class="font-mono text-xl font-bold tracking-tighter text-blue-500">AI PROMPTS OS <span
+                    class="text-xs text-gray-500 block">v4.0 QUANTUM</span></h1>
+        </div>
+        <nav class="flex-1 px-4 space-y-2">
+            <a onclick="showSection('lab')"
+                class="block p-3 rounded-lg hover:bg-white/5 cursor-pointer text-white bg-white/5">🧪 Prompt Lab</a>
+            <a onclick="showSection('resources')"
+                class="block p-3 rounded-lg hover:bg-white/5 cursor-pointer text-gray-400">📂 15M Database</a>
+        </nav>
     </aside>
+    <main class="flex-1 flex flex-col relative bg-dark">
+        <!-- TOP BAR -->
+        <header class="h-16 border-b border-[#1F1F1F] flex items-center justify-between px-8 bg-black/50 backdrop-blur">
+            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                <span class="text-xs font-mono text-blue-500">SYSTEM ONLINE</span></div>
+            <a href="https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-" target="_blank"
+                class="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-xs font-bold text-white transition-all">ACCESS
+                DRIVE FILES →</a>
+        </header>
 
-    <main class="main">
-        <!-- HOME -->
-        <div id="home" class="section active">
-            <h1>Welcome to AI Prompts Pack! 🤖</h1>
-            <p class="welcome-text">Tu acceso exclusivo a 4,000+ prompts profesionales y la herramienta AI Prompt
-                Builder.</p>
-
-            <div class="info-box">
-                <h4>✨ Tu Pack Incluye</h4>
-                <p>4,000+ prompts profesionales organizados por categoría + AI Prompt Builder Software + Bonuses
-                    exclusivos.</p>
+        <!-- LAB VIEW -->
+        <div id="view-lab" class="flex-1 flex overflow-hidden">
+            <div class="w-80 bg-[#0A0A0A] border-r border-gray-800 p-6 overflow-y-auto">
+                <label class="block text-xs font-bold text-gray-500 mb-2">ROLE</label>
+                <select id="lab-role"
+                    class="w-full bg-[#111] text-white p-3 rounded-lg border border-gray-800 mb-4 outline-none focus:border-blue-500">
+                    <option>Expert Copywriter</option>
+                    <option>Senior Developer</option>
+                    <option>Digital Marketer</option>
+                </select>
+                <label class="block text-xs font-bold text-gray-500 mb-2">TASK</label>
+                <textarea id="lab-topic"
+                    class="w-full bg-[#111] text-white p-3 rounded-lg border border-gray-800 h-32 outline-none resize-none focus:border-blue-500"
+                    placeholder="Describe your task..."></textarea>
+                <button onclick="generate()"
+                    class="w-full mt-6 bg-blue-600 hover:bg-blue-500 py-3 rounded-lg font-bold text-white transition-all">✨
+                    COMPILE PROMPT</button>
             </div>
-
-            <h3 style="margin-bottom: 15px; color: var(--subtext);">ACCESO RÁPIDO</h3>
-            <div class="grid">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>🤖 AI Prompt Builder</h3>
-                        <span class="tag">SOFTWARE</span>
-                    </div>
-                    <p>Construye prompts perfectos en segundos con nuestro generador estructurado.</p>
-                    <button class="btn" onclick="showSection('promptBuilder')">Usar Herramienta</button>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h3>📂 Descargar Archivos</h3>
-                        <span class="tag">DRIVE</span>
-                    </div>
-                    <p>Accede a todos tus prompts y recursos directamente desde Google Drive.</p>
-                    <button class="btn" onclick="showSection('resources')">Ver Recursos</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROMPT BUILDER TOOL -->
-        <div id="promptBuilder" class="section">
-            <h1>🤖 AI Prompt Builder Pro</h1>
-            <p class="welcome-text">Construye el prompt perfecto en segundos. Deja de adivinar.</p>
-
-            <div class="tool-container">
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label>👽 1. Rol / Persona</label>
-                        <select id="role">
-                            <option value="Expert Copywriter">Expert Copywriter</option>
-                            <option value="Senior Software Engineer">Senior Software Engineer</option>
-                            <option value="Marketing Strategist">Marketing Strategist</option>
-                            <option value="Data Analyst">Data Analyst</option>
-                            <option value="Creative Writer">Creative Writer</option>
-                            <option value="Business Consultant">Business Consultant</option>
-                            <option value="SEO Specialist">SEO Specialist</option>
-                            <option value="Social Media Manager">Social Media Manager</option>
-                            <option value="Teacher / Professor">Teacher / Professor</option>
-                            <option value="Financial Advisor">Financial Advisor</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>🎭 2. Tono</label>
-                        <select id="tone">
-                            <option value="Professional & Authoritative">Profesional</option>
-                            <option value="Casual & Friendly">Casual y Amigable</option>
-                            <option value="Persuasive & High Energy">Persuasivo</option>
-                            <option value="Technical & Precise">Técnico</option>
-                            <option value="Empathetic & Supportive">Empático</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>🎯 3. La Tarea (¿Qué quieres?)</label>
-                    <textarea id="task" rows="3"
-                        placeholder="ej: Escribe una secuencia de 5 emails de bienvenida para un estudio de yoga..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>📝 4. Contexto / Restricciones</label>
-                    <textarea id="context" rows="2"
-                        placeholder="ej: Público objetivo son mamás ocupadas. Emails de menos de 200 palabras."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>📦 5. Formato de Salida</label>
-                    <select id="format">
-                        <option value="Normal Text">Texto Normal</option>
-                        <option value="Bullet Points">Lista de Puntos</option>
-                        <option value="Step-by-Step Guide">Guía Paso a Paso</option>
-                        <option value="Markdown Table">Tabla Markdown</option>
-                    </select>
-                </div>
-
-                <button class="generate-btn" onclick="generatePrompt()">🚀 GENERAR PROMPT PERFECTO</button>
-
-                <div class="result-area">
-                    <button class="copy-btn" onclick="copyPrompt()">Copiar</button>
-                    <textarea id="promptOutput" readonly placeholder="Tu prompt aparecerá aquí..."></textarea>
+            <div class="flex-1 bg-[#050505] p-8">
+                <div class="glass p-6 rounded-xl border border-gray-800 h-full flex flex-col">
+                    <textarea id="lab-output"
+                        class="w-full h-full bg-transparent text-gray-300 font-mono text-sm outline-none resize-none"
+                        placeholder="AI Output will appear here..."></textarea>
                 </div>
             </div>
         </div>
 
-        <!-- RESOURCES -->
-        <div id="resources" class="section">
-            <h1>📂 Tus Recursos de AI Prompts</h1>
-            <p class="welcome-text">Descarga todos tus archivos directamente desde Google Drive.</p>
-
-            <div class="info-box">
-                <h4>📥 Instrucciones</h4>
-                <p>Haz clic en el botón para abrir la carpeta en Google Drive. Puedes descargar todo o navegar por
-                    categorías.</p>
-            </div>
-
-            <div class="resource-grid">
-                <div class="resource-card">
-                    <div class="resource-icon">🤖</div>
-                    <div class="resource-title">Biblioteca Completa de Prompts</div>
-                    <div class="file-count">4,000+ Prompts</div>
-                    <div class="resource-desc">Todos tus prompts organizados por categoría: Business, Marketing,
-                        Writing, Coding, Creative, y más.</div>
-                    <a href="https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-" target="_blank"
-                        class="btn drive-btn">
-                        📁 Abrir en Google Drive
-                    </a>
+        <!-- RESOURCES VIEW -->
+        <div id="view-resources" class="p-8 hidden">
+            <h2 class="text-2xl font-bold mb-6">📂 15 Million Prompts Database</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass p-6 rounded-xl border border-gray-800 hover:border-blue-500 transition-all cursor-pointer"
+                    onclick="window.open('https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-')">
+                    <h3 class="font-bold text-white">🤖 Marketing Prompts</h3>
+                    <p class="text-sm text-gray-500 mt-2">Access 2M+ marketing scripts.</p>
+                </div>
+                <div class="glass p-6 rounded-xl border border-gray-800 hover:border-blue-500 transition-all cursor-pointer"
+                    onclick="window.open('https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-')">
+                    <h3 class="font-bold text-white">💻 Coding Prompts</h3>
+                    <p class="text-sm text-gray-500 mt-2">Python, JS, React & more.</p>
                 </div>
             </div>
         </div>
     </main>
-
     <script>
-        function showSection(id) {
-            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            event.target.closest('.menu-item')?.classList.add('active');
-        }
-
-        function generatePrompt() {
-            const role = document.getElementById('role').value;
-            const tone = document.getElementById('tone').value;
-            const task = document.getElementById('task').value;
-            const context = document.getElementById('context').value;
-            const format = document.getElementById('format').value;
-
-            if (!task) { alert("Por favor ingresa una tarea!"); return; }
-
-            const prompt = `Act as a ${role}.\n\nTASK:\n${task}\n\n` +
-                (context ? `CONTEXT & CONSTRAINTS:\n${context}\n\n` : '') +
-                `TONE:\n${tone}\n\nOUTPUT FORMAT:\n${format}\n\n` +
-                `Take a deep breath and do this step-by-step to ensure high quality.`;
-
-            document.getElementById('promptOutput').value = prompt;
-        }
-
-        function copyPrompt() {
-            const output = document.getElementById('promptOutput');
-            output.select();
-            document.execCommand('copy');
-            document.querySelector('.copy-btn').innerText = '¡Copiado!';
-            setTimeout(() => document.querySelector('.copy-btn').innerText = 'Copiar', 2000);
-        }
+        function showSection(id) { document.getElementById('view-lab').classList.add('hidden'); document.getElementById('view-resources').classList.add('hidden'); document.getElementById('view-' + id).classList.remove('hidden'); }
+        function generate() { const role = document.getElementById('lab-role').value; const task = document.getElementById('lab-topic').value; const out = document.getElementById('lab-output'); const txt = `ACT AS: ${role}\nTASK: ${task}\n\nThink step-by-step.`; out.value = ""; let i = 0; const t = setInterval(() => { out.value += txt.charAt(i); i++; if (i >= txt.length) clearInterval(t); }, 20); }
     </script>
 </body>
 
