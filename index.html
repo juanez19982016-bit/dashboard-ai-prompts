@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI PROMPTS OS | v4.0 Quantum</title>
+    <title>AI PROMPTS OS | v5.0 ULTIMATE</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@400;600;800&display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { dark: '#050505', card: '#0A0A0A', border: '#1F1F1F', primary: '#3b82f6', accent: '#60a5fa' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Space Grotesk', 'monospace'] } } } }
+        tailwind.config = { theme: { extend: { colors: { dark: '#0a0a0a', darker: '#050505', border: '#222', primary: '#3b82f6', accent: '#60a5fa' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } } }
     </script>
     <style>
         body {
@@ -19,101 +19,277 @@
         }
 
         .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .glow:hover {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-            border-color: #3b82f6;
+        .editor-bg {
+            background: #111;
+            border: 1px solid #222;
+        }
+
+        /* Syntax Highlight Simulation */
+        .token-keyword {
+            color: #f472b6;
+            font-weight: bold;
+        }
+
+        .token-string {
+            color: #a3e635;
+        }
+
+        .token-var {
+            color: #60a5fa;
+        }
+
+        .token-comment {
+            color: #6b7280;
+            font-style: italic;
         }
 
         ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #050505;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-thumb {
             background: #333;
-            border-radius: 4px;
+            border-radius: 3px;
         }
     </style>
 </head>
 
-<body class="flex h-screen overflow-hidden">
-    <aside class="w-64 bg-black border-r border-[#1F1F1F] flex flex-col justify-between hidden md:flex">
-        <div class="p-6">
-            <h1 class="font-mono text-xl font-bold tracking-tighter text-blue-500">AI PROMPTS OS <span
-                    class="text-xs text-gray-500 block">v4.0 QUANTUM</span></h1>
+<body class="flex h-screen overflow-hidden text-sm">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-darker border-r border-border flex flex-col hidden md:flex">
+        <div class="p-6 border-b border-border">
+            <h1 class="font-mono text-lg font-bold text-blue-500 tracking-tighter">PROMPT<span
+                    class="text-white">ENGINEER</span></h1>
+            <p class="text-[10px] text-gray-500 mt-1">v5.0.2 BUILD 2026</p>
         </div>
-        <nav class="flex-1 px-4 space-y-2">
-            <a onclick="showSection('lab')"
-                class="block p-3 rounded-lg hover:bg-white/5 cursor-pointer text-white bg-white/5">🧪 Prompt Lab</a>
-            <a onclick="showSection('resources')"
-                class="block p-3 rounded-lg hover:bg-white/5 cursor-pointer text-gray-400">📂 15M Database</a>
+        <nav class="flex-1 p-4 space-y-1">
+            <p class="px-3 text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-2">Modules</p>
+            <a onclick="setView('lab')"
+                class="block p-3 rounded bg-white/5 text-white cursor-pointer border border-white/5 hover:border-blue-500/50 transition-all font-medium">🧪
+                Engineering Lab</a>
+            <a onclick="setView('library')"
+                class="block p-3 rounded text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer transition-all">📚
+                Pattern Library</a>
+
+            <p class="px-3 text-[10px] font-bold text-gray-600 uppercase tracking-widest mt-6 mb-2">Database</p>
+            <a href="https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-" target="_blank"
+                class="block p-3 rounded text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer transition-all">📂
+                Access 15M Assets</a>
         </nav>
     </aside>
-    <main class="flex-1 flex flex-col relative bg-dark">
-        <!-- TOP BAR -->
-        <header class="h-16 border-b border-[#1F1F1F] flex items-center justify-between px-8 bg-black/50 backdrop-blur">
-            <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                <span class="text-xs font-mono text-blue-500">SYSTEM ONLINE</span></div>
-            <a href="https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-" target="_blank"
-                class="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-full text-xs font-bold text-white transition-all">ACCESS
-                DRIVE FILES →</a>
+
+    <!-- MAIN AREA -->
+    <main class="flex-1 flex flex-col bg-dark relative">
+        <!-- HEADER -->
+        <header class="h-14 border-b border-border flex items-center justify-between px-6 bg-darker/50 backdrop-blur">
+            <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="font-mono text-xs text-green-500">API CONNECTED (Simulated)</span>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="copyToClipboard()"
+                    class="px-3 py-1.5 bg-blue-600/20 text-blue-400 border border-blue-600/30 rounded text-xs font-bold hover:bg-blue-600/30 transition-all">COPY
+                    CODE</button>
+            </div>
         </header>
 
         <!-- LAB VIEW -->
         <div id="view-lab" class="flex-1 flex overflow-hidden">
-            <div class="w-80 bg-[#0A0A0A] border-r border-gray-800 p-6 overflow-y-auto">
-                <label class="block text-xs font-bold text-gray-500 mb-2">ROLE</label>
-                <select id="lab-role"
-                    class="w-full bg-[#111] text-white p-3 rounded-lg border border-gray-800 mb-4 outline-none focus:border-blue-500">
-                    <option>Expert Copywriter</option>
-                    <option>Senior Developer</option>
-                    <option>Digital Marketer</option>
-                </select>
-                <label class="block text-xs font-bold text-gray-500 mb-2">TASK</label>
-                <textarea id="lab-topic"
-                    class="w-full bg-[#111] text-white p-3 rounded-lg border border-gray-800 h-32 outline-none resize-none focus:border-blue-500"
-                    placeholder="Describe your task..."></textarea>
-                <button onclick="generate()"
-                    class="w-full mt-6 bg-blue-600 hover:bg-blue-500 py-3 rounded-lg font-bold text-white transition-all">✨
-                    COMPILE PROMPT</button>
+            <!-- INPUT PANEL -->
+            <div class="w-[400px] bg-[#0c0c0c] border-r border-border flex flex-col overflow-y-auto">
+                <div class="p-6 space-y-6">
+                    <!-- Framework Selector -->
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">1. REASONING
+                            FRAMEWORK</label>
+                        <select id="framework" onchange="updatePrompt()"
+                            class="w-full bg-[#151515] border border-border text-gray-300 p-2.5 rounded focus:border-blue-500 outline-none transition-all">
+                            <option value="cot">🔗 Chain of Thought (Step-by-Step)</option>
+                            <option value="tree">🌳 Tree of Thoughts (Multiple Paths)</option>
+                            <option value="fewshot">🎯 Few-Shot Prompting (Examples)</option>
+                            <option value="role">🎭 Role-Play Strict</option>
+                            <option value="critic">🧐 Critic & Refine</option>
+                        </select>
+                    </div>
+
+                    <!-- Role Configuration -->
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">2. PERSONA /
+                            ROLE</label>
+                        <input type="text" id="role" onkeyup="updatePrompt()" value="Senior Python Developer"
+                            class="w-full bg-[#151515] border border-border text-white p-2.5 rounded focus:border-blue-500 outline-none font-mono placeholder-gray-700"
+                            placeholder="e.g. Expert Copywriter">
+                    </div>
+
+                    <!-- Task Definition -->
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">3. CORE TASK</label>
+                        <textarea id="task" onkeyup="updatePrompt()"
+                            class="w-full bg-[#151515] border border-border text-white p-3 rounded h-24 outline-none focus:border-blue-500 resize-none font-mono leading-relaxed"
+                            placeholder="Describe exactly what you need..."></textarea>
+                    </div>
+
+                    <!-- Parameters -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">TONE</label>
+                            <select id="tone" onchange="updatePrompt()"
+                                class="w-full bg-[#151515] border border-border text-gray-400 p-2 rounded text-xs">
+                                <option>Professional</option>
+                                <option>Persuasive</option>
+                                <option>Empathetic</option>
+                                <option>Technical</option>
+                                <option>Socratic</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">FORMAT</label>
+                            <select id="format" onchange="updatePrompt()"
+                                class="w-full bg-[#151515] border border-border text-gray-400 p-2 rounded text-xs">
+                                <option>Markdown</option>
+                                <option>JSON</option>
+                                <option>Plain Text</option>
+                                <option>Table</option>
+                                <option>CSV</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Constraints -->
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">4. CONSTRAINTS
+                            (Variables)</label>
+                        <textarea id="constraints" onkeyup="updatePrompt()"
+                            class="w-full bg-[#151515] border border-border text-gray-400 p-2 rounded h-16 outline-none text-xs font-mono"
+                            placeholder="- No jargon&#10;- Max 200 words&#10;- Use bullet points"></textarea>
+                    </div>
+                </div>
             </div>
-            <div class="flex-1 bg-[#050505] p-8">
-                <div class="glass p-6 rounded-xl border border-gray-800 h-full flex flex-col">
-                    <textarea id="lab-output"
-                        class="w-full h-full bg-transparent text-gray-300 font-mono text-sm outline-none resize-none"
-                        placeholder="AI Output will appear here..."></textarea>
+
+            <!-- PREVIEW PANEL (CODE EDITOR STYLE) -->
+            <div class="flex-1 bg-[#050505] p-6 flex flex-col">
+                <div class="editor-bg rounded-lg shadow-2xl flex flex-col h-full overflow-hidden">
+                    <!-- Editor Tabs -->
+                    <div class="bg-[#1a1a1a] border-b border-border flex px-2">
+                        <div
+                            class="px-4 py-2 bg-[#050505] border-t-2 border-blue-500 text-gray-300 text-xs font-mono flex items-center border-r border-[#222]">
+                            compiled_prompt.txt
+                        </div>
+                        <div class="px-4 py-2 text-gray-600 text-xs font-mono flex items-center">
+                            system_log
+                        </div>
+                    </div>
+
+                    <!-- Editor Content -->
+                    <div class="p-6 font-mono text-sm leading-relaxed overflow-y-auto flex-1 text-gray-300"
+                        id="editor-content">
+                        <!-- Dynamic Content Injected Here -->
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- RESOURCES VIEW -->
-        <div id="view-resources" class="p-8 hidden">
-            <h2 class="text-2xl font-bold mb-6">📂 15 Million Prompts Database</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass p-6 rounded-xl border border-gray-800 hover:border-blue-500 transition-all cursor-pointer"
-                    onclick="window.open('https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-')">
-                    <h3 class="font-bold text-white">🤖 Marketing Prompts</h3>
-                    <p class="text-sm text-gray-500 mt-2">Access 2M+ marketing scripts.</p>
+        <!-- LIBRARY VIEW -->
+        <div id="view-library" class="hidden p-8">
+            <h2 class="text-2xl font-bold mb-6">📚 Engineering Patterns</h2>
+            <div class="grid grid-cols-3 gap-4">
+                <div onclick="loadTemplate('audit')" class="glass p-4 rounded hover:border-blue-500 cursor-pointer">
+                    <div class="text-blue-500 text-xs font-bold mb-1">AUDIT</div>
+                    <div class="font-bold">Code Reviewer</div>
                 </div>
-                <div class="glass p-6 rounded-xl border border-gray-800 hover:border-blue-500 transition-all cursor-pointer"
-                    onclick="window.open('https://drive.google.com/open?id=1kGFg1Br6g87SoSqPISnzM7xko8AZKA5-')">
-                    <h3 class="font-bold text-white">💻 Coding Prompts</h3>
-                    <p class="text-sm text-gray-500 mt-2">Python, JS, React & more.</p>
+                <div onclick="loadTemplate('marketing')" class="glass p-4 rounded hover:border-blue-500 cursor-pointer">
+                    <div class="text-pink-500 text-xs font-bold mb-1">MARKETING</div>
+                    <div class="font-bold">Sales Letter VSL</div>
                 </div>
             </div>
         </div>
+
     </main>
+
     <script>
-        function showSection(id) { document.getElementById('view-lab').classList.add('hidden'); document.getElementById('view-resources').classList.add('hidden'); document.getElementById('view-' + id).classList.remove('hidden'); }
-        function generate() { const role = document.getElementById('lab-role').value; const task = document.getElementById('lab-topic').value; const out = document.getElementById('lab-output'); const txt = `ACT AS: ${role}\nTASK: ${task}\n\nThink step-by-step.`; out.value = ""; let i = 0; const t = setInterval(() => { out.value += txt.charAt(i); i++; if (i >= txt.length) clearInterval(t); }, 20); }
+        function setView(id) {
+            document.getElementById('view-lab').classList.add('hidden');
+            document.getElementById('view-library').classList.add('hidden');
+            document.getElementById('view-' + id).classList.remove('hidden');
+        }
+
+        function updatePrompt() {
+            const role = document.getElementById('role').value || "Assistant";
+            const task = document.getElementById('task').value || "[Waiting for input...]";
+            const framework = document.getElementById('framework').value;
+            const tone = document.getElementById('tone').value;
+            const format = document.getElementById('format').value;
+            const constraints = document.getElementById('constraints').value;
+
+            let systemPrompt = "";
+            let userPrompt = "";
+
+            // LOGIC FOR FRAMEWORKS
+            if (framework === 'cot') {
+                systemPrompt = `You are a world-class ${role}. Think step-by-step.`;
+                userPrompt = `TASK: ${task}\n\nINSTRUCTION:\nBreak this down into logical steps. Explain your reasoning for each step before providing the final answer.\n\n`;
+            } else if (framework === 'tree') {
+                systemPrompt = `You are a ${role}. Use Tree of Thoughts reasoning.`;
+                userPrompt = `TASK: ${task}\n\nINSTRUCTION:\nGenerate 3 distinct solutions. Evaluate the pros/cons of each. Then, synthesize the best parts into a final answer.\n\n`;
+            } else if (framework === 'critic') {
+                systemPrompt = `You are a ${role} and a Harsh Critic.`;
+                userPrompt = `TASK: ${task}\n\nINSTRUCTION:\n1. Draft an initial response.\n2. Critique your own draft (find flaws).\n3. Rewrite the final response addressing all flaws.\n\n`;
+            } else {
+                systemPrompt = `Act as an expert ${role}.`;
+                userPrompt = `TASK: ${task}\n\n`;
+            }
+
+            // APPENDING VARIABLES
+            const finalOutput = `
+<span class="token-comment">### SYSTEM ROLE ###</span>
+<span class="token-keyword">ACT AS</span>: <span class="token-string">"${role}"</span>
+<span class="token-keyword">TONE</span>: <span class="token-var">${tone}</span>
+<span class="token-keyword">FORMAT_OUTPUT_AS</span>: <span class="token-var">${format}</span>
+
+<span class="token-comment">### USER INSTRUCTION (${framework.toUpperCase()}) ###</span>
+${userPrompt.replace(/\n/g, '<br>')}
+<span class="token-comment">### CONSTRAINTS ###</span>
+${constraints ? constraints.replace(/\n/g, '<br>') : '<span class="token-comment">// No constraints set</span>'}
+
+<span class="token-comment">### FINAL TRIGGER ###</span>
+<span class="token-keyword">Take a deep breath</span> and execute efficiently.
+`;
+            document.getElementById('editor-content').innerHTML = finalOutput;
+        }
+
+        function loadTemplate(type) {
+            setView('lab');
+            if (type === 'audit') {
+                document.getElementById('role').value = "Senior Software Engineer";
+                document.getElementById('framework').value = "critic";
+                document.getElementById('task').value = "Audit the following Python code for security vulnerabilities and performance bottlenecks.";
+            } else if (type === 'marketing') {
+                document.getElementById('role').value = "Direct Response Copywriter";
+                document.getElementById('framework').value = "cot";
+                document.getElementById('task').value = "Write a high-converting Video Sales Letter (VSL) script for a fitness coaching program.";
+            }
+            updatePrompt();
+        }
+
+        function copyToClipboard() {
+            const el = document.getElementById('editor-content');
+            const range = document.createRange();
+            range.selectNode(el);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert("Prompt Logic Copied!");
+        }
+
+        // Init
+        updatePrompt();
     </script>
 </body>
 
